@@ -19,13 +19,14 @@
 
 import os
 import sys
+from time import sleep
 import gi
 
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
 
 from gi.repository import Gtk, Gio, Adw
-from .window import CodariumWindow
+from .window import CodariumWindow, SplashScreen
 
 
 class CodariumApplication(Adw.Application):
@@ -46,6 +47,10 @@ class CodariumApplication(Adw.Application):
         """
         win = self.props.active_window
         if not win:
+            splash = SplashScreen()
+            # splash.present()
+            # sleep(2)
+            # splash.close_splash()
             win = CodariumWindow(application=self)
         win.present()
 

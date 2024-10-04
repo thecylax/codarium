@@ -1,55 +1,60 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- Created with Cambalache 0.90.4 -->
+<!-- Created with Cambalache 0.92.0 -->
 <interface>
   <!-- interface-name codarium.ui -->
-  <requires lib="gio" version="2.0"/>
   <requires lib="gtk" version="4.12"/>
   <requires lib="libadwaita" version="1.4"/>
   <template class="CodariumWindow" parent="AdwApplicationWindow">
     <property name="content">
-      <object class="AdwToolbarView">
-        <property name="content">
-          <object class="GtkScrolledWindow">
-            <property name="child">
-              <object class="GtkDrawingArea" id="canvas">
-                <signal name="show" handler="on_draw"/>
+      <object class="AdwToastOverlay">
+        <property name="child">
+          <object class="AdwOverlaySplitView" id="split_view">
+            <property name="content">
+              <object class="AdwNavigationPage">
+                <property name="child">
+                  <object class="AdwToolbarView">
+                    <property name="content">
+                      <object class="GtkScrolledWindow">
+                        <property name="child">
+                          <object class="GtkDrawingArea" id="canvas">
+                            <signal name="show" handler="on_draw"/>
+                          </object>
+                        </property>
+                      </object>
+                    </property>
+                    <child type="top">
+                      <object class="AdwHeaderBar">
+                        <child>
+                          <object class="GtkToggleButton">
+                            <property name="active">True</property>
+                            <property name="icon-name">sidebar-show-symbolic</property>
+                            <signal name="toggled" handler="on_toggle"/>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </property>
+                <property name="title">Codarium</property>
               </object>
             </property>
-            <property name="has-frame">True</property>
+            <property name="sidebar">
+              <object class="AdwNavigationPage">
+                <property name="child">
+                  <object class="AdwToolbarView">
+                    <child type="top">
+                      <object class="AdwHeaderBar"/>
+                    </child>
+                  </object>
+                </property>
+                <property name="title">Toolbox</property>
+              </object>
+            </property>
           </object>
         </property>
-        <child type="top">
-          <object class="AdwHeaderBar">
-            <child type="end">
-              <object class="GtkMenuButton">
-                <property name="icon-name">open-menu-symbolic</property>
-                <property name="menu-model">primary_menu</property>
-                <property name="primary">True</property>
-                <property name="tooltip-text">Menu</property>
-              </object>
-            </child>
-          </object>
-        </child>
       </object>
     </property>
     <property name="default-height">600</property>
     <property name="default-width">900</property>
-    <property name="title">Codarium</property>
   </template>
-  <menu id="primary_menu">
-    <section>
-      <item>
-        <attribute name="action">app.preferences</attribute>
-        <attribute name="label" translatable="yes">_Preferences</attribute>
-      </item>
-      <item>
-        <attribute name="action">win.show-help-overlay</attribute>
-        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
-      </item>
-      <item>
-        <attribute name="action">app.about</attribute>
-        <attribute name="label" translatable="yes">_About Fugue</attribute>
-      </item>
-    </section>
-  </menu>
 </interface>
