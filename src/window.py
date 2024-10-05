@@ -21,7 +21,7 @@ import json
 from gi.repository import Adw, Gio, Gtk
 import cairo
 
-from src.block import Block
+from .core.blocks.block import Block
 
 
 @Gtk.Template(filename="src/splash.ui")

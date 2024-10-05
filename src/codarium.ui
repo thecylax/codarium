@@ -42,8 +42,53 @@
               <object class="AdwNavigationPage">
                 <property name="child">
                   <object class="AdwToolbarView">
+                    <property name="content">
+                      <object class="AdwToolbarView">
+                        <property name="content">
+                          <object class="AdwViewStack" id="stack">
+                            <child>
+                              <object class="AdwViewStackPage" id="tb_blocks_page">
+                                <property name="child">
+                                  <object class="GtkLabel">
+                                    <property name="label">Blocks</property>
+                                  </object>
+                                </property>
+                                <property name="icon-name">goa-account-msn-symbolic</property>
+                                <property name="name">page1</property>
+                                <property name="use-underline">True</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="AdwViewStackPage" id="tb_blocks_info">
+                                <property name="child">
+                                  <object class="GtkLabel">
+                                    <property name="label">Inspector</property>
+                                  </object>
+                                </property>
+                                <property name="icon-name">help-about</property>
+                              </object>
+                            </child>
+                          </object>
+                        </property>
+                        <child type="top">
+                          <object class="AdwHeaderBar" id="tb_blocks_header">
+                            <property name="title-widget">
+                              <object class="AdwViewSwitcher">
+                                <property name="policy">wide</property>
+                                <property name="stack">stack</property>
+                              </object>
+                            </property>
+                          </object>
+                        </child>
+                        <child type="bottom">
+                          <object class="AdwViewSwitcherBar" id="switcher_bar">
+                            <property name="stack">stack</property>
+                          </object>
+                        </child>
+                      </object>
+                    </property>
                     <child type="top">
-                      <object class="AdwHeaderBar"/>
+                      <object class="AdwHeaderBar" id="tb_sidepanel_header"/>
                     </child>
                   </object>
                 </property>
