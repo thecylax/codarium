@@ -1,4 +1,4 @@
-#!/home/cardoso/.virtualenvs/codarium/bin/python3
+#!@PYTHON@
 
 # codarium.in
 #
@@ -25,9 +25,9 @@ import signal
 import locale
 import gettext
 
-VERSION = '0.1.0'
-pkgdatadir = '/usr/local/share/codarium'
-localedir = '/usr/local/share/locale'
+VERSION = '@VERSION@'
+pkgdatadir = '@pkgdatadir@'
+localedir = '@localedir@'
 
 sys.path.insert(1, pkgdatadir)
 signal.signal(signal.SIGINT, signal.SIG_DFL)
@@ -42,5 +42,5 @@ if __name__ == '__main__':
     resource = Gio.Resource.load(os.path.join(pkgdatadir, 'codarium.gresource'))
     resource._register()
 
-    from src import main
+    from codarium import main
     sys.exit(main.main(VERSION))

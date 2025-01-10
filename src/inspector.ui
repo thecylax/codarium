@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.94.1 -->
+<interface>
+  <!-- interface-name inspector.ui -->
+  <requires lib="gtk" version="4.14"/>
+  <requires lib="libadwaita" version="1.5"/>
+  <template class="InspectorWindow" parent="AdwDialog">
+    <property name="accessible-role">dialog</property>
+    <property name="child">
+      <object class="AdwToolbarView">
+        <property name="content">
+          <object class="GtkBox">
+            <property name="homogeneous">True</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkLabel" id="block_name">
+                <property name="justify">center</property>
+                <property name="label">&lt;b&gt;FFT&lt;/b&gt; - Transformação rápida de Fourier.</property>
+                <property name="margin-end">5</property>
+                <property name="margin-start">5</property>
+                <property name="use-markup">True</property>
+                <property name="wrap">True</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkDrawingArea" id="canvas">
+                <signal name="show" handler="on_draw"/>
+              </object>
+            </child>
+          </object>
+        </property>
+        <child type="top">
+          <object class="AdwHeaderBar">
+            <property name="show-back-button">False</property>
+            <property name="show-end-title-buttons">False</property>
+            <property name="show-start-title-buttons">False</property>
+            <property name="title-widget">
+              <object class="AdwWindowTitle" id="title">
+                <property name="title">Block Inspector</property>
+              </object>
+            </property>
+            <child type="end">
+              <object class="GtkButton" id="close_btn">
+                <property name="icon-name">window-close</property>
+                <signal name="clicked" handler="on_close_inspector"/>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </property>
+    <property name="content-height">300</property>
+    <property name="content-width">200</property>
+    <property name="presentation-mode">floating</property>
+  </template>
+</interface>

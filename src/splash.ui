@@ -1,29 +1,29 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- Created with Cambalache 0.92.0 -->
+<!-- Created with Cambalache 0.94.1 -->
 <interface>
   <!-- interface-name splash.ui -->
   <requires lib="libadwaita" version="1.4"/>
-  <requires lib="gtk" version="4.12"/>
-  <template class="Splash" parent="AdwWindow">
-    <property name="default-height">600</property>
-    <property name="default-width">900</property>
-    <child>
-      <object class="AdwToolbarView">
-        <property name="content">
-          <object class="GtkBox">
-            <property name="orientation">vertical</property>
-            <property name="spacing">10</property>
-            <child>
-              <object class="GtkLabel" id="label">
-                <property name="label">Codarium 2024</property>
-                <style>
-                  <class name="title-1"/>
-                </style>
-              </object>
-            </child>
+  <requires lib="gtk" version="4.8"/>
+  <template class="Splash" parent="GtkWindow">
+    <property name="child">
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkPicture" id="logo_image">
+            <property name="file">splash.png</property>
           </object>
-        </property>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="css-classes">title-1</property>
+            <property name="label">devel preview</property>
+          </object>
+        </child>
       </object>
-    </child>
+    </property>
+    <property name="decorated">False</property>
+    <property name="default-height">600</property>
+    <property name="default-width">800</property>
+    <property name="resizable">False</property>
   </template>
 </interface>

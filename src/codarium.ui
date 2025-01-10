@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- Created with Cambalache 0.92.0 -->
+<!-- Created with Cambalache 0.92.1 -->
 <interface>
   <!-- interface-name codarium.ui -->
-  <requires lib="gtk" version="4.12"/>
+  <requires lib="gtk" version="4.10"/>
   <requires lib="libadwaita" version="1.4"/>
   <template class="CodariumWindow" parent="AdwApplicationWindow">
     <property name="content">
@@ -24,14 +24,22 @@
                     </property>
                     <child type="top">
                       <object class="AdwHeaderBar">
+                        <property name="title-widget">
+                          <object class="AdwWindowTitle" id="title_bar">
+                            <property name="title">Coda</property>
+                          </object>
+                        </property>
                         <child>
-                          <object class="GtkToggleButton">
+                          <object class="GtkToggleButton" id="sidebar_toggle">
                             <property name="active">True</property>
                             <property name="icon-name">sidebar-show-symbolic</property>
                             <signal name="toggled" handler="on_toggle"/>
                           </object>
                         </child>
                       </object>
+                    </child>
+                    <child type="bottom">
+                      <object class="GtkStatusbar" id="status_bar"/>
                     </child>
                   </object>
                 </property>
@@ -49,11 +57,42 @@
                             <child>
                               <object class="AdwViewStackPage" id="tb_blocks_page">
                                 <property name="child">
-                                  <object class="GtkLabel">
-                                    <property name="label">Blocks</property>
+                                  <object class="GtkBox">
+                                    <property name="orientation">vertical</property>
+                                    <child>
+                                      <object class="AdwExpanderRow">
+                                        <property name="expanded">True</property>
+                                        <property name="icon-name">accessories-calculator</property>
+                                        <property name="subtitle">Basic math blocks</property>
+                                        <property name="subtitle-lines">1</property>
+                                        <property name="title">Math</property>
+                                        <child>
+                                          <object class="GtkGridView" id="blocks_grid">
+                                            <property name="max-columns">6</property>
+                                            <property name="min-columns">3</property>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwExpanderRow">
+                                        <property name="icon-name">network-receive-symbolic</property>
+                                        <property name="subtitle">Network communication</property>
+                                        <property name="subtitle-lines">1</property>
+                                        <property name="title">Network</property>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="AdwExpanderRow">
+                                        <property name="icon-name">drive-harddisk-system-symbolic</property>
+                                        <property name="subtitle">Database connection</property>
+                                        <property name="subtitle-lines">1</property>
+                                        <property name="title">Database</property>
+                                      </object>
+                                    </child>
                                   </object>
                                 </property>
-                                <property name="icon-name">goa-account-msn-symbolic</property>
+                                <property name="icon-name">application-x-addon-symbolic</property>
                                 <property name="name">page1</property>
                                 <property name="use-underline">True</property>
                               </object>
@@ -99,7 +138,7 @@
         </property>
       </object>
     </property>
-    <property name="default-height">600</property>
-    <property name="default-width">900</property>
+    <property name="default-height">900</property>
+    <property name="default-width">1200</property>
   </template>
 </interface>

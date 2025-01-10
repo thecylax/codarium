@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<!DOCTYPE cambalache-project SYSTEM "cambalache-project.dtd">
+<cambalache-project version="0.94.0" target_tk="gtk-4.0">
+  <ui>
+	(1,1,"inspector.ui","inspector.ui",None,None,None,None,None,None,None)
+  </ui>
+  <ui_library>
+	(1,"gtk","4.14",None),
+	(1,"libadwaita","1.5",None)
+  </ui_library>
+  <object>
+	(1,1,"AdwDialog","InspectorWindow",None,None,None,None,0,None,None),
+	(1,2,"AdwToolbarView",None,1,None,None,None,0,None,None),
+	(1,3,"AdwHeaderBar",None,2,None,"top",None,0,None,None),
+	(1,4,"AdwWindowTitle","title",3,None,None,None,0,None,None),
+	(1,5,"GtkBox",None,2,None,None,None,1,None,None),
+	(1,6,"GtkLabel","block_name",5,None,None,None,0,None,None),
+	(1,7,"GtkButton","close_btn",3,None,"end",None,1,None,None),
+	(1,8,"GtkDrawingArea","canvas",5,None,None,None,1,None,None)
+  </object>
+  <object_property>
+	(1,1,"AdwDialog","child",None,None,None,None,None,2,None,None,None,None),
+	(1,1,"AdwDialog","content-height","300",None,None,None,None,None,None,None,None,None),
+	(1,1,"AdwDialog","content-width","200",None,None,None,None,None,None,None,None,None),
+	(1,1,"AdwDialog","presentation-mode","floating",None,None,None,None,None,None,None,None,None),
+	(1,1,"GtkAccessible","accessible-role","dialog",None,None,None,None,None,None,None,None,None),
+	(1,2,"AdwToolbarView","content",None,None,None,None,None,5,None,None,None,None),
+	(1,3,"AdwHeaderBar","show-back-button","False",None,None,None,None,None,None,None,None,None),
+	(1,3,"AdwHeaderBar","show-end-title-buttons","False",None,None,None,None,None,None,None,None,None),
+	(1,3,"AdwHeaderBar","show-start-title-buttons","False",None,None,None,None,None,None,None,None,None),
+	(1,3,"AdwHeaderBar","title-widget",None,None,None,None,None,4,None,None,None,None),
+	(1,4,"AdwWindowTitle","title","Block Inspector",None,None,None,None,None,None,None,None,None),
+	(1,5,"GtkBox","homogeneous","True",None,None,None,None,None,None,None,None,None),
+	(1,5,"GtkOrientable","orientation","vertical",None,None,None,None,None,None,None,None,None),
+	(1,6,"GtkLabel","justify","center",None,None,None,None,None,None,None,None,None),
+	(1,6,"GtkLabel","label","&lt;b&gt;FFT&lt;/b&gt; - Transformação rápida de Fourier.",None,None,None,None,None,None,None,None,None),
+	(1,6,"GtkLabel","use-markup","True",None,None,None,None,None,None,None,None,None),
+	(1,6,"GtkLabel","wrap","True",None,None,None,None,None,None,None,None,None),
+	(1,6,"GtkWidget","margin-end","5",None,None,None,None,None,None,None,None,None),
+	(1,6,"GtkWidget","margin-start","5",None,None,None,None,None,None,None,None,None),
+	(1,7,"GtkButton","icon-name","window-close",None,None,None,None,None,None,None,None,None)
+  </object_property>
+  <object_signal>
+	(2,1,7,"GtkButton","clicked","on_close_inspector",None,0,0,0,None),
+	(3,1,8,"GtkWidget","show","on_draw",None,0,0,0,None)
+  </object_signal>
+</cambalache-project>

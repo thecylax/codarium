@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=coda
+Exec=coda
+Icon=com.blacktomato.codarium
+Terminal=false
+Type=Application
+Categories=GTK;
+StartupNotify=true

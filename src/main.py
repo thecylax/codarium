@@ -25,8 +25,8 @@ import gi
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
 
-from gi.repository import Gtk, Gio, Adw
-from .window import CodariumWindow, SplashScreen
+from gi.repository import Gtk, Gio, Adw, GLib
+from .window import CodariumWindow, SplashScreen2
 
 
 class CodariumApplication(Adw.Application):
@@ -38,6 +38,8 @@ class CodariumApplication(Adw.Application):
         self.create_action('quit', lambda *_: self.quit(), ['<primary>q'])
         self.create_action('about', self.on_about_action)
         self.create_action('preferences', self.on_preferences_action)
+        self.splash = None
+        self.main_window = None
 
     def do_activate(self):
         """Called when the application is activated.
@@ -45,14 +47,25 @@ class CodariumApplication(Adw.Application):
         We raise the application's main window, creating it if
         necessary.
         """
+        if not self.splash:
+            self.splash = SplashScreen2(application=self)
+            self.splash.present()
+
+        # Temporizador para fechar a splash screen e abrir a janela principal
+        GLib.timeout_add_seconds(3, self.show_main_window)
+        # self.show_main_window()
+
+    def show_main_window(self):
+        """Callback para exibir a janela principal após a splash screen."""
+        if self.splash:
+            self.splash.destroy()
+
         win = self.props.active_window
         if not win:
-            splash = SplashScreen()
-            # splash.present()
-            # sleep(2)
-            # splash.close_splash()
             win = CodariumWindow(application=self)
         win.present()
+
+        return False  # Parar o temporizador
 
     def on_about_action(self, widget, _):
         """Callback for the app.about action."""
@@ -89,18 +102,3 @@ def main(version):
     print(f"Running Codarium version: {version}")
     app = CodariumApplication()
     return app.run(sys.argv)
-
-
-VERSION = '0.1.0'
-pkgdatadir = '.'
-localedir = '@localedir@'
-
-if __name__ == '__main__':
-    import gi
-
-    from gi.repository import Gio
-    # resource = Gio.Resource.load(os.path.join(pkgdatadir, 'codarium.gresource'))
-    # resource._register()
-
-    # from fugue import main
-    sys.exit(main(VERSION))

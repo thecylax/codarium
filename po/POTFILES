@@ -1,0 +1,6 @@
+data/com.blacktomato.codarium.desktop.in
+data/com.blacktomato.codarium.metainfo.xml.in
+data/com.blacktomato.codarium.gschema.xml
+src/main.py
+src/window.py
+src/codarium.ui

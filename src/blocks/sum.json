@@ -1,0 +1,31 @@
+{
+    "version": "0.1",
+    "id": "sum",
+    "position": {
+        "x": 0,
+        "y": 0
+    },
+    "category": "math",
+    "icon": "ac-adapter",
+    "resolver": {
+        "name": "sumation.py"
+    },
+    "ports": {
+        "inputs": {
+            "x": {
+                "kind": "single",
+                "type": "int"
+            },
+            "y": {
+                "kind": "single",
+                "type": "int"
+            }
+        },
+        "outputs": {
+            "response": {
+                "kind": "single",
+                "type": "integer"
+            }
+        }
+    }
+}

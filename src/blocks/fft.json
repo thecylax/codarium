@@ -1,0 +1,32 @@
+{
+    "version": "0.1",
+    "id": "fft",
+    "position": {
+        "x": 0,
+        "y": 0
+    },
+    "category": "math",
+    "icon": "folder",
+    "info": "FFT - Transformação rápida de Fourier.",
+    "resolver": {
+        "name": "fft.py"
+    },
+    "ports": {
+        "inputs": {
+            "x": {
+                "kind": "single",
+                "type": "int"
+            },
+            "y": {
+                "kind": "single",
+                "type": "int"
+            }
+        },
+        "outputs": {
+            "response": {
+                "kind": "single",
+                "type": "integer"
+            }
+        }
+    }
+}
