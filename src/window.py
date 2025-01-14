@@ -65,6 +65,7 @@ class Inspector(Adw.Dialog):
         self.block = copy(block)
         self.block_name.set_markup(block.info)  # mudar nome para nao causar confusão
         self.title.set_subtitle(block.name)
+        self.canvas.queue_draw()
 
 
 @Gtk.Template(filename="src/splash.ui")
@@ -149,27 +150,18 @@ class CodariumWindow(Adw.ApplicationWindow):
         shortcut_controller.add_shortcut(panel_shortcut)
 
         # define banco de dados
-        self.db = Database('codadb.json')
+        self.db = Database('codadb.json', 'blocks')
 
         self.blocks: Block = []
         self.state = []
         self.focused_block: Block = None
 
         # Modelo de dados (ícones e nomes)
-        icon_data = [
-            {"name": "Icon 1", "icon": "folder"},
-            {"name": "Icon 2", "icon": "user-home"},
-            {"name": "Icon 3", "icon": "system-run"},
-            {"name": "Icon 4", "icon": "document-open"},
-            {"name": "Icon 5", "icon": "edit-copy"},
-            {"name": "Icon 6", "icon": "media-playback-start"},
-            {"name": "Icon 7", "icon": "airplane-mode"},
-            {"name": "Icon 8", "icon": "alarm"}
-        ]
+        icon_data = []
         # Abrir db e carregar blocos na biblioteca
-        self.db.restore_database()
+        # self.db.restore_database()
         print('Loading blocks...')
-        core_blocks = self.db.get_all('blocks')
+        core_blocks = self.db.get_all()
         for cb in core_blocks:
             icon_data.append({'name': cb['name'], 'icon': cb['icon']})
 
@@ -274,7 +266,7 @@ class CodariumWindow(Adw.ApplicationWindow):
         block_name = self.block_selection.get('name')
         # block_icon = self.block_selection.get('icon')
         if self.block_selection:  # Vai inserir um novo bloco no canvas?
-            block_data = self.db.get_one('blocks', 'name', block_name)
+            block_data = self.db.get_one('name', block_name)
             b = Block.deserealize(block_data, None)
             b.pos = (x, y)
             self.blocks.append(b)

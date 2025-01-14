@@ -20,12 +20,16 @@
 import os
 import sys
 from time import sleep
+
 import gi
+
+from .helper.util import load_packages
 
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
 
-from gi.repository import Gtk, Gio, Adw, GLib
+from gi.repository import Adw, Gio, GLib, Gtk
+
 from .window import CodariumWindow, SplashScreen2
 
 
@@ -47,13 +51,15 @@ class CodariumApplication(Adw.Application):
         We raise the application's main window, creating it if
         necessary.
         """
-        if not self.splash:
-            self.splash = SplashScreen2(application=self)
-            self.splash.present()
+        # if not self.splash:
+        #     self.splash = SplashScreen2(application=self)
+        #     self.splash.present()
+        #     GLib.timeout_add_seconds(3, self.show_main_window)
 
-        # Temporizador para fechar a splash screen e abrir a janela principal
-        GLib.timeout_add_seconds(3, self.show_main_window)
-        # self.show_main_window()
+        # Deveria carregar e validar os pacotes xz no DB, caso nao exista
+        load_packages()
+
+        self.show_main_window()
 
     def show_main_window(self):
         """Callback para exibir a janela principal após a splash screen."""

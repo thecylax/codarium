@@ -1,0 +1,67 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "schemaVersion": "1.0.0",
+    "type": "object",
+    "properties": {
+      "name": { "type": "string" },
+      "version": { "type": "string" },
+      "author": { "type": "string" },
+      "info": { "type": "string" },
+      "schema_version": { "type": "string" },
+      "position": {
+        "type": "object",
+        "properties": {
+          "x": { "type": "number" },
+          "y": { "type": "number" }
+        },
+        "required": ["x", "y"]
+      },
+      "category": { "type": "string" },
+      "icon": { "type": "string" },
+      "resolver": { "type": "string" },
+      "ports": {
+        "type": "object",
+        "properties": {
+          "inputs": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "kind": { "type": "string" },
+                "type": {}
+              },
+              "required": ["kind", "type"]
+            }
+          },
+          "outputs": {
+            "type": "object",
+            "properties": {
+              "response": {
+                "type": "object",
+                "properties": {
+                  "kind": { "type": "string" },
+                  "type": {}
+                },
+                "required": ["kind", "type"]
+              }
+            },
+            "required": ["response"]
+          }
+        },
+        "required": ["inputs", "outputs"]
+      }
+    },
+    "required": [
+      "name",
+      "version",
+      "author",
+      "info",
+      "schema_version",
+      "position",
+      "category",
+      "icon",
+      "resolver",
+      "ports"
+    ],
+    "additionalProperties": false
+  }

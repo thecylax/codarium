@@ -1,0 +1,3 @@
+Um pacote é composto de basicamente 2 arquivos:
+- Resolver
+- Definição do bloco
